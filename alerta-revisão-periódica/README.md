@@ -1,4 +1,4 @@
-# Power Automate – Envio Automático de E-mails
+# Alerta de Revisão Periódica
 
 ![Power Automate](https://img.shields.io/badge/Power%20Automate-blue)
 ![Excel](https://img.shields.io/badge/Excel-green)
