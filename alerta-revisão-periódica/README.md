@@ -1,8 +1,7 @@
 # Power Automate – Envio Automático de E-mails
 
-![Power Automate](https://img.shields.io/badge/Power%20Automate-Workflow-blue)
-![Excel](https://img.shields.io/badge/Excel-Online-green)
-![Status](https://img.shields.io/badge/status-active-success)
+![Power Automate](https://img.shields.io/badge/Power%20Automate-blue)
+![Excel](https://img.shields.io/badge/Excel-green)
 
 ##  Descrição
 
