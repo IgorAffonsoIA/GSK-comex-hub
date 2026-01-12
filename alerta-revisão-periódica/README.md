@@ -68,7 +68,7 @@ O fluxo segue a seguinte sequência:
 
 ##  Exemplo de Cenário
 
-- Planilha com coluna **Prazo Remanescente (Dias)**
+- Planilha com coluna **"Prazo Remanescente (Dias)"**
 - Fluxo executado diariamente
 - Quando a data for igual ao dia atual:
   - Um e-mail de lembrete é enviado automaticamente
