@@ -29,6 +29,8 @@ O fluxo segue a seguinte sequência:
 - Gatilho do fluxo.
 - Configurável para execução diária, semanal ou em horários específicos.
 
+<img width="888" height="812" alt="image" src="https://github.com/user-attachments/assets/43f9159b-c2ad-469e-a519-91d7fe64bc80" />
+
 ### 2️) Listar linhas presentes em uma tabela 
 - Conecta-se a um arquivo Excel armazenado no **OneDrive** ou **SharePoint**.
 - A planilha deve estar formatada como **Tabela**.
@@ -39,8 +41,6 @@ O fluxo segue a seguinte sequência:
 ### 4️) Condição
 - Avalia regras como:
   - Data igual ao dia atual
-  - Status = `Pendente`
-  - Flag booleana = `Verdadeiro`
 
 **Caminhos:**
 -  Verdadeiro → Executa envio de e-mail
