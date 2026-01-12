@@ -75,8 +75,8 @@ O fluxo do script segue a seguinte sequência:
 ##  Estrutura da pasta do projeto
 
 ```text
-📦 tratamento-dados-excel
- ┣ 📄 tratamento_planilha.py
+📦 tratamento-dados-KPI
+ ┣ 📄 tratamento.py
  ┣ 📄 README.md
  ┣ 📄 requirements.txt
 
