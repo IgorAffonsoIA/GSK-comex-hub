@@ -72,7 +72,7 @@ O fluxo do script segue a seguinte sequência:
 
 ---
 
-##  Estrutura da pasta do projeto
+##  Estrutura do repositório
 
 ```text
 📦 tratamento-dados-KPI
