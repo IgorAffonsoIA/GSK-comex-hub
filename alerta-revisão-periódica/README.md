@@ -1,4 +1,4 @@
-# Power Automate – Envio Automático de E-mails a partir do Excel
+# Power Automate – Envio Automático de E-mails
 
 ![Power Automate](https://img.shields.io/badge/Power%20Automate-Workflow-blue)
 ![Excel](https://img.shields.io/badge/Excel-Online-green)
