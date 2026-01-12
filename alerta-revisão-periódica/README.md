@@ -56,6 +56,11 @@ O fluxo segue a seguinte sequência:
 
 ### 5️) Enviar um e-mail (V2)
 - Envia mensagens automáticas utilizando dados dinâmicos do Excel.
+- Os dados dinâmicos utilizados são respectivamente:
+  - "Document Name", o nome do documento
+  - "Document Number", o número do documento
+  - "Next Periodic Review Date", a data para a revisão do documento
+  - "Prazo Remanescente (Dias)", quantidade de dias que faltam para a próxima revisão
 
 <img width="714" height="806" alt="image" src="https://github.com/user-attachments/assets/5d99f4b3-d4f3-4830-aad6-da6747a6c07d" />
 
