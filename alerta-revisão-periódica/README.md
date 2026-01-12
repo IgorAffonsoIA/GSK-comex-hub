@@ -32,8 +32,8 @@ O fluxo segue a seguinte sequência:
 <img width="888" height="812" alt="image" src="https://github.com/user-attachments/assets/43f9159b-c2ad-469e-a519-91d7fe64bc80" />
 
 ### 2️) Listar linhas presentes em uma tabela 
-- Conecta-se a um arquivo Excel armazenado no **OneDrive** ou **SharePoint**.
-- A planilha deve estar formatada como **Tabela**, caso o nome da tablea na planilha seja alterado será necessário alterar    o nome da planilha a ser lida pelo fluxo.
+- Conecta-se a um arquivo Excel armazenado no **SharePoint**.
+- A planilha deve estar formatada como uma **Tabela**, o nome da tabela servirá como parâmetro para a acão.
 
 <img width="712" height="790" alt="image" src="https://github.com/user-attachments/assets/71e0fbd4-da32-4e95-9d3c-2ba332389910" />
 
