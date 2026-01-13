@@ -6,7 +6,7 @@ Repositório central do setor, reunindo projetos, templates, scripts e documenta
 ##  Estrutura do repositório
 
 ```text
-📦 
+📦 GSK-comex-hub
  ┣ 📦 alerta-revisão-periódica
  ┣ 📦 demurrage
  ┣ 📦 tratamento-dados-KPI
