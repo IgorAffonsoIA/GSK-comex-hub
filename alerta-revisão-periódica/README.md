@@ -74,3 +74,11 @@ O fluxo segue a seguinte sequência:
 - Fluxo executado diariamente
 - Quando a data for igual ao dia atual:
   - Um e-mail de lembrete é enviado automaticamente
+
+---
+
+##  Estrutura do repositório
+
+```text
+📦 alerta-revisão-periódica
+ ┣ 📄 README.md
