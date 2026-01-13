@@ -21,6 +21,8 @@ O fluxo segue a seguinte sequência:
 4. **Condição** – Avalia um critério lógico definido pelo usuário.
 5. **Enviar um e-mail (V2)** – Dispara o e-mail quando a condição é verdadeira.
 
+<img width="574" height="739" alt="image" src="https://github.com/user-attachments/assets/9558be71-2b80-4156-a29f-3b1a9d1b134d" />
+
 ---
 
 ##  Detalhamento das Etapas
