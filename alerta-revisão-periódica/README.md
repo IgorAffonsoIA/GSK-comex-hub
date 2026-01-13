@@ -35,7 +35,7 @@ O fluxo segue a seguinte sequência:
 
 ### 2️) Listar linhas presentes em uma tabela 
 - Conecta-se a um arquivo Excel armazenado no **SharePoint**.
-- A planilha deve estar formatada como uma **Tabela**, o nome da tabela servirá como parâmetro para a acão.
+- A planilha deve estar formatada como uma **Tabela**, o nome da tabela servirá para identificar a tabela que será utilizada no fluxo.
 
 <img width="712" height="790" alt="image" src="https://github.com/user-attachments/assets/71e0fbd4-da32-4e95-9d3c-2ba332389910" />
 
