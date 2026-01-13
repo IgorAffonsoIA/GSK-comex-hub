@@ -70,8 +70,8 @@ O fluxo segue a seguinte sequência:
 
 ##  Exemplo de Cenário
 
-- Fluxo é executado diariamente
-- O fluxo lê os dados de cada linha da planilha
+- Fluxo é executado diariamente, às 8 horas da manhã.
+- O fluxo lê os dados de cada linha da planilha.
 - Para cada linha da coluna:
   - Compara a coluna **"Prazo Remanescente (Dias)"** com o uma quantidade de dias pré-definida (90, 60, 30 ou 7) e a partir disso existem duas possibilidades:
     - Se for menor, um e-mail é enviado para os endereços de e-mail selecionados.
