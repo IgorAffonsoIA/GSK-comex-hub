@@ -48,7 +48,7 @@ O fluxo segue a seguinte sequência:
 - Utiliza os dados da coluna **"Prazo Remanescente (Dias)"** para fazer a comparação.
 
 - Avalia regras como:
-  - Data igual ou menor ao dia atual
+  - Data igual ou menor a 90, 60, 30 ou 7 dias.
 
 **Caminhos:**
 -  Verdadeiro → Executa envio de e-mail
@@ -57,7 +57,7 @@ O fluxo segue a seguinte sequência:
 <img width="723" height="569" alt="image" src="https://github.com/user-attachments/assets/623a45f8-c937-42f8-b836-6284eb4efc2f" />
 
 ### 5️) Enviar um e-mail (V2)
-- Envia mensagens automáticas utilizando dados dinâmicos do Excel.
+- Envia mensagens automáticas utilizando dados dinâmicos extraídos da planilha do Excel.
 - Os dados dinâmicos utilizados são respectivamente:
   - **"Document Name"**, o nome do documento
   - **"Document Number"**, o número do documento
@@ -70,10 +70,12 @@ O fluxo segue a seguinte sequência:
 
 ##  Exemplo de Cenário
 
-- Planilha com coluna **"Prazo Remanescente (Dias)"**
-- Fluxo executado diariamente
-- Quando a data for igual ao dia atual:
-  - Um e-mail de lembrete é enviado automaticamente
+- Fluxo é executado diariamente
+- O fluxo lê os dados de cada linha da planilha
+- Para cada linha da coluna:
+  - Compara a coluna **"Prazo Remanescente (Dias)"** com o uma quantidade de dias pré-definida (90, 60, 30 ou 7) e a partir disso existem duas possibilidades:
+    - Se for menor, um e-mail é enviado para os endereços de e-mail selecionados.
+    - Caso seja maior, nenhuma ação é realizada.
 
 ---
 
