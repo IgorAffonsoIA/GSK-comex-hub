@@ -9,5 +9,6 @@ Repositório central do setor, reunindo projetos, templates, scripts e documenta
 📦 GSK-comex-hub
  ┣ 📦 alerta-revisão-periódica
  ┣ 📦 demurrage
+ ┣ 📦 email-dirbi
  ┣ 📦 tratamento-dados-KPI
  ┣ 📄 README.md
