@@ -76,7 +76,7 @@ O fluxo do script segue a seguinte sequência:
 
 ```text
 📦 tratamento-dados-KPI
- ┣ 📄 tratamento.py
  ┣ 📄 README.md
+ ┣ 📄 Tratamento.py
  ┣ 📄 requirements.txt
 
