@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Passaporte</title>
+  <style>
+    :root {
+      --primaria: #f98d0e;
+      --branco: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: Georgia, serif;
+    }
+
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #f98d0e, #ffb347);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      color: var(--branco);
+    }
+
+    .passaporte {
+      width: 360px;
+      height: 560px;
+      background: var(--primaria);
+      border-radius: 18px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+      overflow: hidden;
+      color: var(--branco);
+    }
+
+    @media (max-width: 768px) {
+      body { align-items: stretch; }
+      .passaporte {
+        width: 100vw;
+        height: 100vh;
+        border-radius: 0;
+        box-shadow: none;
+      }
+    }
+
+    .tela {
+      height: 100%;
+      padding: 24px;
+      display: none;
+    }
+
+    .cadastro {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+    }
+
+    input {
+      margin-bottom: 12px;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+    }
+
+    .botao {
+      padding: 10px 20px;
+      border: none;
+      background: var(--branco);
+      color: #f98d0e;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .capa {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .pagina {
+      position: relative;
+    }
+
+    .cabecalho {
+      text-align: center;
+      border-bottom: 1px dashed #fff;
+      padding-bottom: 10px;
+      margin-bottom: 14px;
+    }
+
+    .barra {
+      width: 100%;
+      height: 10px;
+      background: rgba(255,255,255,0.3);
+      border-radius: 5px;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+
+    .barra span {
+      display: block;
+      height: 100%;
+      width: 0;
+      background: #ffffff;
+      transition: width 0.4s;
+    }
+
+    .vistos {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .visto {
+      border: 2px solid #ffffff;
+      padding: 8px;
+      text-align: center;
+      font-size: 11px;
+      background: transparent;
+      transform: rotate(-3deg);
+      animation: carimbo 0.6s ease-out;
+    }
+
+    @keyframes carimbo {
+      0% { transform: scale(2) rotate(0deg); opacity: 0; }
+      60% { transform: scale(0.9) rotate(-6deg); opacity: 1; }
+      100% { transform: scale(1) rotate(-3deg); }
+    }
+
+    .rodape {
+      position: absolute;
+      bottom: 16px;
+      width: calc(100% - 48px);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<div class="passaporte">
+
+  <div class="tela cadastro" id="telaCadastro">
+    <h1>Bem-vindo ao evento Rota Certa</h1>
+    <p>Informe seu nome para criar seu passaporte</p>
+    <input id="nome" placeholder="Seu nome" />
+    <button class="botao" onclick="cadastrarUsuario()">Criar Passaporte</button>
+  </div>
+
+  <div class="tela capa" id="telaCapa">
+    <h1>Passaporte Rota Certa</h1>
+    <div id="infoUsuario"></div>
+    <button class="botao" onclick="abrirPassaporte()">Abrir Passaporte</button>
+  </div>
+
+  <div class="tela pagina" id="telaPagina">
+    <div class="cabecalho">
+      <h3>Vistos do Evento</h3>
+      <div class="barra"><span id="progresso"></span></div>
+    </div>
+
+    <div class="vistos" id="listaVistos"></div>
+
+    <div class="rodape" id="mensagemAtividade">
+      <button class="botao" onclick="resetarPassaporte()">Resetar Passaporte</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const TOTAL_VISTOS = 5;
+  let vistos = JSON.parse(localStorage.getItem('vistos')) || [];
+
+  const parametros = new URLSearchParams(window.location.search);
+  const atividade = parametros.get('activity');
+
+  function iniciar() {
+    const usuario = JSON.parse(localStorage.getItem('usuario'));
+
+    if (!usuario) {
+      telaCadastro.style.display = 'flex';
+    } else {
+      mostrarCapa(usuario);
+    }
+
+    if (atividade && usuario) {
+      concederVisto(atividade);
+    }
+  }
+
+  function cadastrarUsuario() {
+    const nome = document.getElementById('nome').value;
+
+    if (!nome) {
+      alert('Por favor, informe seu nome');
+      return;
+    }
+
+    const usuario = { nome };
+    localStorage.setItem('usuario', JSON.stringify(usuario));
+
+    if (atividade) {
+      concederVisto(atividade);
+    }
+
+    mostrarCapa(usuario);
+  }
+
+  function mostrarCapa(usuario) {
+    telaCadastro.style.display = 'none';
+    telaCapa.style.display = 'flex';
+    infoUsuario.innerHTML = `<strong>${usuario.nome}</strong>`;
+  }
+
+  function abrirPassaporte() {
+    telaCapa.style.display = 'none';
+    telaPagina.style.display = 'block';
+    renderizarVistos();
+  }
+
+  function concederVisto(idAtividade) {
+    if (vistos.includes(idAtividade)) return;
+
+    vistos.push(idAtividade);
+    localStorage.setItem('vistos', JSON.stringify(vistos));
+
+    mensagemAtividade.innerHTML = `Visto conquistado: <strong>${idAtividade}</strong>`;
+  }
+
+  function renderizarVistos() {
+    listaVistos.innerHTML = '';
+
+    vistos.forEach(id => {
+      const div = document.createElement('div');
+      div.className = 'visto';
+      div.innerHTML = `VISTO<br>${id}`;
+      listaVistos.appendChild(div);
+    });
+
+    progresso.style.width = `${(vistos.length / TOTAL_VISTOS) * 100}%`;
+  }
+
+  function resetarPassaporte() {
+    const confirmar = confirm(
+      'Tem certeza que deseja resetar o passaporte?\nTodos os dados serão apagados.'
+    );
+
+    if (!confirmar) return;
+
+    localStorage.removeItem('usuario');
+    localStorage.removeItem('vistos');
+    location.reload();
+  }
+
+  iniciar();
+</script>
+
+</body>
+</html>
