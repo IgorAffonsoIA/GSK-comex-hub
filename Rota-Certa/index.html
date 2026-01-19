@@ -95,13 +95,28 @@
       margin-bottom: 14px;
     }
 
+    
     .barra {
       width: 100%;
-      height: 10px;
-      background: rgba(255,255,255,0.3);
+      height: 18px;
+      background: rgba(231, 222, 222, 0.55);
       border-radius: 5px;
       overflow: hidden;
       margin-bottom: 12px;
+      position: relative;
+    }
+
+    
+    #textoProgresso {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 15px;
+      font-weight: bold;
+      color: #ff8800;
+      pointer-events: none;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
     }
 
     .barra span {
@@ -140,6 +155,7 @@
       width: calc(100% - 48px);
       text-align: center;
     }
+      
   </style>
 </head>
 <body>
@@ -162,8 +178,21 @@
   <div class="tela pagina" id="telaPagina">
     <div class="cabecalho">
       <h3>Vistos do Evento</h3>
-      <div class="barra"><span id="progresso"></span></div>
+      <div class="barra">
+        <span id="progresso"></span>
+        <div id="textoProgresso">0%</div>
+      </div>
     </div>
+
+  <div class="tela conclusao" id="telaConclusao">
+    <h1>🎉 Passaporte Completo!</h1>
+    <p>Parabéns, você coletou todos os vistos do evento.</p>
+    <p>Agora é só aproveitar 🚀</p>
+
+    <button class="botao" onclick="resetarPassaporte()">
+      Criar novo passaporte
+    </button>
+  </div>
 
     <div class="vistos" id="listaVistos"></div>
 
@@ -197,7 +226,6 @@
 
   function cadastrarUsuario() {
     const nome = document.getElementById('nome').value;
-
     if (!nome) {
       alert('Por favor, informe seu nome');
       return;
@@ -206,10 +234,7 @@
     const usuario = { nome };
     localStorage.setItem('usuario', JSON.stringify(usuario));
 
-    if (atividade) {
-      concederVisto(atividade);
-    }
-
+    if (atividade) concederVisto(atividade);
     mostrarCapa(usuario);
   }
 
@@ -227,16 +252,18 @@
 
   function concederVisto(idAtividade) {
     if (vistos.includes(idAtividade)) return;
+    if (vistos.length >= TOTAL_VISTOS) {
+      mensagemAtividade.innerHTML = 'Limite máximo de vistos atingido';
+      return;
+    }
 
     vistos.push(idAtividade);
     localStorage.setItem('vistos', JSON.stringify(vistos));
-
     mensagemAtividade.innerHTML = `Visto conquistado: <strong>${idAtividade}</strong>`;
   }
 
   function renderizarVistos() {
     listaVistos.innerHTML = '';
-
     vistos.forEach(id => {
       const div = document.createElement('div');
       div.className = 'visto';
@@ -244,16 +271,13 @@
       listaVistos.appendChild(div);
     });
 
-    progresso.style.width = `${(vistos.length / TOTAL_VISTOS) * 100}%`;
+    const percentual = Math.round((vistos.length / TOTAL_VISTOS) * 100);
+    progresso.style.width = `${percentual}%`;
+    textoProgresso.innerText = `${percentual}%`;
   }
 
   function resetarPassaporte() {
-    const confirmar = confirm(
-      'Tem certeza que deseja resetar o passaporte?\nTodos os dados serão apagados.'
-    );
-
-    if (!confirmar) return;
-
+    if (!confirm('Tem certeza que deseja resetar o passaporte?\nTodos os dados serão apagados.')) return;
     localStorage.removeItem('usuario');
     localStorage.removeItem('vistos');
     location.reload();
@@ -264,3 +288,6 @@
 
 </body>
 </html>
+
+<!--?activity=Importacao
+    para testar os links do visto -->
