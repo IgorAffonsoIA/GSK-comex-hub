@@ -7,6 +7,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="theme-color" content="#f98d0e">
   <title>Passaporte</title>
+
   <style>
     :root {
       --primaria: #f98d0e;
@@ -52,11 +53,12 @@
       height: 100%;
       padding: 24px;
       display: none;
+      flex-direction: column;
     }
 
-    .cadastro {
-      display: flex;
-      flex-direction: column;
+    .cadastro,
+    .capa,
+    .conclusao {
       justify-content: center;
       text-align: center;
     }
@@ -79,14 +81,6 @@
       margin-top: 10px;
     }
 
-    .capa {
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-
     .pagina {
       position: relative;
     }
@@ -98,7 +92,6 @@
       margin-bottom: 14px;
     }
 
-    
     .barra {
       width: 100%;
       height: 18px;
@@ -109,7 +102,6 @@
       position: relative;
     }
 
-    
     #textoProgresso {
       position: absolute;
       top: 50%;
@@ -132,19 +124,39 @@
 
     .vistos {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
+      grid-template-columns: 1fr; /* AGORA 1 VISTO POR LINHA */
+      gap: 14px;
     }
 
     .visto {
       border: 2px solid #ffffff;
-      padding: 8px;
+      padding: 14px;
+      font-size: 13px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+
+      /* CENTRALIZAÇÃO */
+      display: flex;
+      flex-direction: column;
+      align-items: center;      /* horizontal */
+      justify-content: center;  /* vertical */
       text-align: center;
-      font-size: 11px;
-      background: transparent;
-      transform: rotate(-3deg);
+
+      transform: rotate(-1.5deg);
       animation: carimbo 0.6s ease-out;
     }
+
+      .visto.sombra {
+      border-style: dashed;
+      opacity: 0.35;
+      background: transparent;
+      filter: grayscale(100%);
+    }
+
+      .visto.sombra span {
+      font-style: italic;
+    }
+
 
     @keyframes carimbo {
       0% { transform: scale(2) rotate(0deg); opacity: 0; }
@@ -158,13 +170,22 @@
       width: calc(100% - 48px);
       text-align: center;
     }
-      
+
+    .mensagem-concluida {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 10px;
+      border-radius: 12px;
+      font-weight: bold;
+    }
+
   </style>
 </head>
+
 <body>
 
 <div class="passaporte">
 
+  <!-- TELA CADASTRO -->
   <div class="tela cadastro" id="telaCadastro">
     <h1>Bem-vindo ao evento Rota Certa</h1>
     <p>Informe seu nome para criar seu passaporte</p>
@@ -172,30 +193,22 @@
     <button class="botao" onclick="cadastrarUsuario()">Criar Passaporte</button>
   </div>
 
+  <!-- TELA CAPA -->
   <div class="tela capa" id="telaCapa">
     <h1>Passaporte Rota Certa</h1>
     <div id="infoUsuario"></div>
     <button class="botao" onclick="abrirPassaporte()">Abrir Passaporte</button>
   </div>
 
+  <!-- TELA PÁGINA -->
   <div class="tela pagina" id="telaPagina">
     <div class="cabecalho">
-      <h3>Vistos do Evento</h3>
+      <h3>Vistos Rota Certa</h3>
       <div class="barra">
         <span id="progresso"></span>
         <div id="textoProgresso">0%</div>
       </div>
     </div>
-
-  <div class="tela conclusao" id="telaConclusao">
-    <h1>🎉 Passaporte Completo!</h1>
-    <p>Parabéns, você coletou todos os vistos do evento.</p>
-    <p>Agora é só aproveitar 🚀</p>
-
-    <button class="botao" onclick="resetarPassaporte()">
-      Criar novo passaporte
-    </button>
-  </div>
 
     <div class="vistos" id="listaVistos"></div>
 
@@ -204,20 +217,38 @@
     </div>
   </div>
 
+  <!-- TELA CONCLUSÃO -->
+  <div class="tela conclusao" id="telaConclusao">
+    <h1>🎉 Passaporte Completo!</h1>
+    <p>Parabéns, você coletou todos os vistos do evento.</p>
+    <button class="botao" onclick="abrirPassaporte()">Abrir Passaporte</button>
+  </div>
+</div>
+
+
 </div>
 
 <script>
-  const TOTAL_VISTOS = 5;
+  const TOTAL_VISTOS = 3;
   let vistos = JSON.parse(localStorage.getItem('vistos')) || [];
 
   const parametros = new URLSearchParams(window.location.search);
-  const atividade = parametros.get('activity');
+  const atividade = parametros.get('activity')?.trim().substring(0, 30);
+
+  const FLAG_CONCLUSAO = 'conclusaoMostrada';
+
+  function mostrarTela(id) {
+    document.querySelectorAll('.tela').forEach(tela => {
+      tela.style.display = 'none';
+    });
+    document.getElementById(id).style.display = 'flex';
+  }
 
   function iniciar() {
     const usuario = JSON.parse(localStorage.getItem('usuario'));
 
     if (!usuario) {
-      telaCadastro.style.display = 'flex';
+      mostrarTela('telaCadastro');
     } else {
       mostrarCapa(usuario);
     }
@@ -228,7 +259,8 @@
   }
 
   function cadastrarUsuario() {
-    const nome = document.getElementById('nome').value;
+    const nome = document.getElementById('nome').value.trim();
+
     if (!nome) {
       alert('Por favor, informe seu nome');
       return;
@@ -242,19 +274,21 @@
   }
 
   function mostrarCapa(usuario) {
-    telaCadastro.style.display = 'none';
-    telaCapa.style.display = 'flex';
     infoUsuario.innerHTML = `<strong>${usuario.nome}</strong>`;
+    mostrarTela('telaCapa');
   }
 
   function abrirPassaporte() {
-    telaCapa.style.display = 'none';
-    telaPagina.style.display = 'block';
     renderizarVistos();
+    mostrarTela('telaPagina');
   }
 
   function concederVisto(idAtividade) {
-    if (vistos.includes(idAtividade)) return;
+    if (vistos.includes(idAtividade)) {
+      mensagemAtividade.innerHTML = 'Esse visto já foi registrado';
+      return;
+    }
+
     if (vistos.length >= TOTAL_VISTOS) {
       mensagemAtividade.innerHTML = 'Limite máximo de vistos atingido';
       return;
@@ -262,41 +296,84 @@
 
     vistos.push(idAtividade);
     localStorage.setItem('vistos', JSON.stringify(vistos));
+
     mensagemAtividade.innerHTML = `Visto conquistado: <strong>${idAtividade}</strong>`;
   }
 
-  function renderizarVistos() {
-    listaVistos.innerHTML = '';
-    vistos.forEach(id => {
-      const div = document.createElement('div');
-      div.className = 'visto';
-      div.innerHTML = `VISTO<br>${id}`;
-      listaVistos.appendChild(div);
-    });
+function renderizarVistos() {
+  listaVistos.innerHTML = '';
 
-    const percentual = Math.round((vistos.length / TOTAL_VISTOS) * 100);
-    progresso.style.width = `${percentual}%`;
-    textoProgresso.innerText = `${percentual}%`;
+  for (let i = 0; i < TOTAL_VISTOS; i++) {
+    const div = document.createElement('div');
+    div.className = 'visto';
+
+    if (vistos[i]) {
+      div.innerHTML = `
+        <strong>VISTO</strong>
+        <span>${vistos[i]}</span>
+      `;
+    } else {
+      div.classList.add('sombra');
+      div.innerHTML = `
+        <strong>VISTO</strong>
+        <span>Não coletado</span>
+      `;
+    }
+
+    listaVistos.appendChild(div);
   }
+
+  const percentual = Math.round((vistos.length / TOTAL_VISTOS) * 100);
+  progresso.style.width = `${percentual}%`;
+  textoProgresso.innerText = `${percentual}%`;
+
+  if (vistos.length === TOTAL_VISTOS) {
+    mensagemAtividade.innerHTML = `
+      <div class="mensagem-concluida">
+        🎉 Passaporte concluído com sucesso!
+      </div>
+      <button class="botao" onclick="resetarPassaporte()">
+        Resetar Passaporte
+      </button>
+    `;
+
+    if (!localStorage.getItem(FLAG_CONCLUSAO)) {
+      localStorage.setItem(FLAG_CONCLUSAO, 'true');
+
+      setTimeout(() => {
+        mostrarTela('telaConclusao');
+      }, 600);
+    }
+  } else {
+    mensagemAtividade.innerHTML = `
+      <button class="botao" onclick="resetarPassaporte()">
+        Resetar Passaporte
+      </button>
+    `;
+  }
+}
+
 
   function resetarPassaporte() {
     if (!confirm('Tem certeza que deseja resetar o passaporte?\nTodos os dados serão apagados.')) return;
+
     localStorage.removeItem('usuario');
     localStorage.removeItem('vistos');
+    localStorage.removeItem(FLAG_CONCLUSAO);
     location.reload();
   }
 
-    function esconderBarraMobile() {
+  function esconderBarraMobile() {
     setTimeout(() => {
       window.scrollTo(0, 1);
     }, 100);
   }
 
-  window.addEventListener('load', esconderBarraMobile);
-  window.addEventListener('orientationchange', esconderBarraMobile);
+  window.addEventListener('load', esconderBarraMobile);  window.addEventListener('orientationchange', esconderBarraMobile);
 
   iniciar();
 </script>
+
 
 </body>
 </html>
