@@ -103,4 +103,4 @@ Na seção **Examinar conteúdo do pacote**, selecione as **configurações de i
 ```text
 📦 alerta-revisão-periódica
  ┣ 📄 README.md
- ┣ 📄 Fluxo_alerta_Revisão_Periódica.zip
+ ┣ 📄 Fluxo_Alerta_Revisão_Periódica.zip
