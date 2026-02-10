@@ -68,15 +68,16 @@ O fluxo segue a seguinte sequência:
 
 ---
 
-##  Exemplo de Cenário
+##  Como acessar o fluxo
 
-- Fluxo é executado diariamente, às 8 horas da manhã.
-- O fluxo lê os dados de cada linha da planilha.
-- Para cada linha da coluna:
-  - Compara a coluna **"Prazo Remanescente (Dias)"** com o uma quantidade de dias pré-definida (90, 60, 30 ou 7) e a partir disso existem duas possibilidades:
-    - Se for menor, um e-mail é enviado para os endereços de e-mail selecionados.
-    - Caso seja maior, nenhuma ação é realizada.
+### 1) Baixe o arquivo .zip
+- Baixe o fluxo-alerta-revisão-periódica.zip que está localizado nessa pasta.
 
+### 2) Acesse o Power Automate no navegador
+
+### 3) Vá na secção Meus Fluxos, clique em importar e selecione a opção Importar Pacote
+
+### 4) Faça o upload do arquivo .zip e configure as conexões
 ---
 
 ##  Estrutura do repositório
