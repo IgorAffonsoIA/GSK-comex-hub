@@ -89,6 +89,7 @@ Acesse o **Power Automate** pelo navegador e autentique-se com sua conta.
 <img width="1207" height="678" alt="image" src="https://github.com/user-attachments/assets/b5bffa3e-da03-4812-8b95-f5a44bd3b246" />
 
 Na seção **Examinar conteúdo do pacote**, selecione as **configurações de importação** mais adequadas ao seu cenário (por exemplo, criar um novo fluxo ou atualizar um existente).
+
 <img width="483" height="276" alt="image" src="https://github.com/user-attachments/assets/37b0cd73-2a38-48d3-a7ac-425868a3c014" />
 
 ---
