@@ -70,14 +70,28 @@ O fluxo segue a seguinte sequência:
 
 ##  Como acessar o fluxo
 
-### 1) Baixe o arquivo .zip
+### 1. Baixar o arquivo `.zip`
+Faça o download do arquivo **`fluxo-alerta-revisão-periódica.zip`**, localizado nesta pasta do repositório.
 - Baixe o fluxo-alerta-revisão-periódica.zip que está localizado nessa pasta.
+<img width="307" height="158" alt="image" src="https://github.com/user-attachments/assets/bdb0544f-429e-4c8c-a00f-6b17b94402d3" />
 
-### 2) Acesse o Power Automate no navegador
+### 2. Acessar o Power Automate
+Acesse o **Power Automate** pelo navegador e autentique-se com sua conta.
 
-### 3) Vá na secção Meus Fluxos, clique em importar e selecione a opção Importar Pacote
+### 3. Importar o fluxo
+1. No menu lateral, acesse a seção **Meus Fluxos**.  
+2. Clique em **Importar** e selecione a opção **Importar pacote (zip)**.
+<img width="246" height="113" alt="image" src="https://github.com/user-attachments/assets/1b902b4c-9ace-4262-986a-ff2ec95025d0" />
 
-### 4) Faça o upload do arquivo .zip e configure as conexões
+### 4. Fazer upload do pacote e configurar as conexões
+1. Faça o upload do arquivo `.zip` baixado anteriormente.  
+2. Configure as conexões necessárias conforme solicitado pelo Power Automate.
+<img width="1207" height="678" alt="image" src="https://github.com/user-attachments/assets/b5bffa3e-da03-4812-8b95-f5a44bd3b246" />
+
+Na seção **Examinar conteúdo do pacote**, selecione as **configurações de importação** mais adequadas ao seu cenário (por exemplo, criar um novo fluxo ou atualizar um existente).
+<img width="483" height="276" alt="image" src="https://github.com/user-attachments/assets/37b0cd73-2a38-48d3-a7ac-425868a3c014" />
+<img width="481" height="318" alt="image" src="https://github.com/user-attachments/assets/f0e0f030-8f44-4410-8943-43f469999355" />
+
 ---
 
 ##  Estrutura do repositório
