@@ -19,7 +19,7 @@ O projeto é totalmente **front-end**, sem backend, utilizando `localStorage` pa
 
 ---
 
-## 🚀 Como usar
+##  Como usar
 
 ### 1️⃣ Abrir o projeto
 Basta abrir o arquivo `index.html` em qualquer navegador.
