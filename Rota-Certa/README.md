@@ -63,7 +63,7 @@ Os dados são salvos no localStorage do navegador, ou seja
 ##  Configurações rápidas
 
 ### Alterar número total de vistos
-Procurar a constante TOTAL_VISTOS no `index.html`:
+Procurar a constante TOTAL_VISTOS no `index.html` e alterar o número de vistos:
 
 ```js
 const TOTAL_VISTOS = 3;
