@@ -71,7 +71,7 @@ O fluxo segue a seguinte sequência:
 ##  Como acessar o fluxo
 
 ### 1) Baixar o arquivo `.zip`
-Faça o download do arquivo **`fluxo-alerta-revisão-periódica.zip`**, localizado nesta pasta do repositório.
+Faça o download do arquivo **`Fluxo_Alerta_Revisão_Periódica.zip`**, localizado nesta pasta do repositório.
 
 <img width="307" height="158" alt="image" src="https://github.com/user-attachments/assets/bdb0544f-429e-4c8c-a00f-6b17b94402d3" />
 
@@ -103,4 +103,4 @@ Na seção **Examinar conteúdo do pacote**, selecione as **configurações de i
 ```text
 📦 alerta-revisão-periódica
  ┣ 📄 README.md
- ┣ 📄 fluxo-alerta-revisão.zip
+ ┣ 📄 Fluxo_alerta_Revisão_Periódica.zip
