@@ -72,7 +72,7 @@ O fluxo segue a seguinte sequência:
 
 ### 1) Baixar o arquivo `.zip`
 Faça o download do arquivo **`fluxo-alerta-revisão-periódica.zip`**, localizado nesta pasta do repositório.
-- Baixe o fluxo-alerta-revisão-periódica.zip que está localizado nessa pasta.
+
 <img width="307" height="158" alt="image" src="https://github.com/user-attachments/assets/bdb0544f-429e-4c8c-a00f-6b17b94402d3" />
 
 ### 2) Acessar o Power Automate
