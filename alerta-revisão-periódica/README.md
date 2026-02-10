@@ -80,7 +80,7 @@ Acesse o **Power Automate** pelo navegador e autentique-se com sua conta.
 
 ### 3) Importar o fluxo
 1. No menu lateral, acesse a secção **Meus Fluxos**.  
-2. Clique em **Importar** e selecione a opção **Importar pacote (zip)**.
+2. Clique em **Importar** e selecione a opção **Importar Pacote (zip)**.
 <img width="246" height="113" alt="image" src="https://github.com/user-attachments/assets/1b902b4c-9ace-4262-986a-ff2ec95025d0" />
 
 ### 4) Fazer upload do pacote e configurar as conexões
